@@ -1,0 +1,4 @@
+build/
+.dart_tool/
+database_service.dart
+.firebase
