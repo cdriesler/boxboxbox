@@ -1,1 +1,82 @@
-<div class="drawing-square"></div>
+<div class="alerts" *ngIf="warning != ''">
+    <div class="alert-window" >
+        Error: {{warning}}
+        <br>
+        <div class="clear-alert" (click)="onClearAlert()">OK</div>
+    </div>
+</div>
+
+<div class="main-content">
+
+<div class="drawing-square-zone">
+    <div class="drawing-square">
+        <div class="drawing-canvas" *ngIf="mode==''">
+            
+        </div>
+
+        <div class="drawing-canvas" *ngIf="mode=='input'">
+            <div class="top-row"></div>
+        </div>
+
+        <div class="drawing-canvas" *ngIf="mode=='box'" style="background-color:grey">
+
+        </div>
+    </div>
+</div>
+
+<div class="input-column">
+    <div class="subtitle">inputs :</div>
+
+    <div class="group-title">lines</div>
+
+    <ul class="input-list">
+        <li *ngFor="let input of allInputs"
+            [class.activeInput]="input === activeInput"
+            (click)="onInputSelect(input)">
+            <span class="list-item" [ngClass]="{'active-selection': input === activeInput}">{{input}}</span>
+        </li>
+    </ul>
+
+    <div class="submission" (click)="onSubmitInput()" *ngIf="mode != 'input'">&lt;</div>
+    <div *ngIf="mode=='input'" style="text-align:right; margin-bottom: 2vh;"><span class="clear-selection" (click)="onClearSelection()">X</span> <span class="submission" (click)="onCommitInput()">&gt;</span></div>
+
+    <div class="subtitle">boxes :</div>
+
+    <div class="group-title">adverbs</div>
+
+    <ul class="input-list">
+        <li *ngFor="let adverb of boxAdverbs"
+            [class.activeAdverb]="adverb === activeAdverb"
+            (click)="onAdverbSelect(adverb)">
+            <span class="list-item" [ngClass]="{'active-selection': adverb === activeAdverb}">{{adverb}}</span>
+        </li>
+    </ul>
+
+    <div class="group-title">verbs</div>
+
+    <ul class="input-list">
+        <li *ngFor="let verb of boxVerbs"
+            [class.activeVerb]="verb === activeVerb"
+            (click)="onVerbSelect(verb)">
+            <span class="list-item" [ngClass]="{'active-selection': verb === activeVerb}">{{verb}}</span>
+        </li>
+    </ul>
+</div>
+
+<div class="input-column-submission" *ngIf="mode != 'box'">
+    <span class="submission" (click)="onSubmitBox()">&lt;</span>
+    <span class="clear-selection" (click)="onClearSelection()"> X</span>   
+</div>
+
+<div class="input-column-submission" *ngIf="mode == 'box'" style="text-align:right">
+    <span class="clear-selection" (click)="onClearSelection()">X </span>
+    <span class="submission" (click)="onCommitBox()">&gt;</span>
+</div>
+
+<div class="payload-column">
+    <div class="subtitle">payload :</div>
+</div>
+
+<div class="payload-column-submission submission"> &gt; </div>
+
+</div>

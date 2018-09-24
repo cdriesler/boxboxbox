@@ -1,14 +1,179 @@
-.drawing-square {
-    width: 100%;
+.alerts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    font-size: 2vh;
+    font-style: italic;
+}
+
+.alert-window {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+
+    margin-left: 2vh;
+}
+
+.clear-alert {
+    color: gainsboro;
+}
+
+.clear-alert:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 5fr 2fr 5fr;
+    grid-template-rows: 1fr 8fr 1fr;
+
+    margin-top: 1vh;
+    border-top: 3px solid black;
+
     height: 100%;
 
-    background: gainsboro;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 
-    min-height: 80vh;
-
-    text-align: center;
-    line-height: 80vh;
-    vertical-align: middle;
+.drawing-square-zone {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
 
     font-size: 2vh;
 }
+
+.drawing-square {
+    height: 70vh;
+    width: 70vh;
+
+    margin-top: 4vh;
+    margin-left: 4vh;
+    padding: 2vh;
+    
+    border: 2pt solid black;
+
+    background: white;
+}
+
+.drawing-canvas {
+    width: 66vh;
+    height: 66vh;
+
+    display: grid;
+    grid-template-columns: 1fr 50fr 1fr;
+    grid-template-rows: 1fr 50fr 1fr;
+
+    margin: 2vh;
+
+    background: gainsboro;
+}
+
+.top-row {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 3;
+
+    width: 100%;
+    height: 100%;
+    
+    background: black;
+}
+
+.active-selection {
+    color: black;
+}
+
+.subtitle {
+    width: 100%;
+
+    font-size: 2.1vh;
+
+    border-bottom: 2px solid black;
+}
+
+.group-title {
+    width: 100%;
+
+    font-size: 1.5vh;
+
+    border-bottom: 1px solid black;
+
+    margin-top: 2vh;
+    margin-bottom: 1vh;
+}
+
+.submission {
+    font-size: 2.5vh;
+    font-weight: bold;
+
+    margin-bottom: 2vh;
+
+    color: gainsboro;
+}
+
+.submission:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.clear-selection {
+    color:gainsboro;
+    font-size: 2.1vh;
+}
+
+.clear-selection:hover {
+    cursor: pointer;
+    color:black;
+}
+
+.input-list {
+    margin-bottom: 0.5vh;
+
+    font-size: 1.5vh;
+    line-height: 2.75vh;
+
+    list-style: none;
+
+    color: gainsboro;
+}
+
+.list-item:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.input-column {
+    margin-top: 4vh;
+    margin-right: 3vh;
+
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 3;
+}
+
+.input-column-submission {
+    margin-right: 3vh;
+
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+
+    white-space: nowrap;
+}
+
+.payload-column-submission {
+    margin-right: 3vh;
+
+    grid-column: 3 / span 1;
+    grid-row: 3 / span 1;
+
+    text-align: right;
+}
+
+.payload-column {
+    margin-top: 4vh;
+    margin-right: 3vh;
+
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 3;
+}
+
