@@ -9,13 +9,16 @@
 <div class="main-content">
 
 <div class="drawing-square-zone">
-    <div class="drawing-square">
+    <div class="drawing-square" >
         <div class="drawing-canvas" *ngIf="mode==''">
             
         </div>
 
-        <div class="drawing-canvas" *ngIf="mode=='input'">
-            <div class="top-row"></div>
+        <div class="drawing-canvas" id="canvas" *ngIf="mode=='input'">
+            <div class="top-edge" id="top-edge" (click)="onSelectEdge($event)"></div>
+            <div class="bottom-edge" (click)="onSelectEdge($event)"></div>
+            <div class="left-edge" id="left-edge" (click)="onSelectEdge($event)"></div>
+            <div class="right-edge" id="right-edge" (click)="onSelectEdge($event)"></div>
         </div>
 
         <div class="drawing-canvas" *ngIf="mode=='box'" style="background-color:grey">

@@ -72,7 +72,15 @@ class BlackBoxComponent implements OnInit {
   }
 
   void onCommitBox() {
-    
+  
+  }
+
+  void onSelectEdge(dynamic event) {
+    var div = window.document.getElementById("canvas").getBoundingClientRect();
+
+    print("Normalized point: (" + ((event.page.x - div.topLeft.x)/div.width).toString() + "," + ((event.page.y - div.topLeft.y)/div.height).toString() + ")");
+
+    //print(window.document.getElementById("canvas").getBoundingClientRect().topLeft.x.toString());
   }
 
   //Alert methods.
