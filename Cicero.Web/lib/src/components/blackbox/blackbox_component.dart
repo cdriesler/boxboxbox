@@ -271,6 +271,13 @@ class BlackBoxComponent implements OnInit {
 
     //print(div.text);
 
+    if (div.text == "" || div.text[0]=="g") {
+      div.text = "";
+      print("Bad input, ignoring.");
+      warning = "Payload format was incorrect. Please try again.";
+      return;
+    }
+
     var id = await _submissionService.deployPayload(div.text);
 
     onClearData();
