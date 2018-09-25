@@ -35,6 +35,8 @@
 
     overflow-x: hidden;
     overflow-y: hidden;
+
+    background: none;
 }
 
 .drawing-square-zone {
@@ -42,6 +44,8 @@
     grid-row: 1 / span 2;
 
     font-size: 2vh;
+
+    background: none;
 }
 
 .drawing-square {
@@ -54,7 +58,7 @@
     
     border: 2pt solid black;
 
-    background: white;
+    background: none;
 }
 
 .drawing-canvas {
@@ -67,7 +71,9 @@
 
     margin: 2vh;
 
-    background: gainsboro;
+    background: none;
+
+    z-index: 5;
 }
 
 .top-edge {
@@ -157,6 +163,16 @@
     color:black;
 }
 
+.clear-data {
+    color: gainsboro;
+    font-size: 2.1vh;
+}
+
+.clear-data:hover {
+    cursor: pointer;
+    color: black;
+}
+
 .input-list {
     margin-bottom: 0.5vh;
 
@@ -205,5 +221,10 @@
 
     grid-column: 3 / span 1;
     grid-row: 1 / span 3;
+}
+
+.payload-data {
+    font-size: 1.5vh;
+    line-height: 2.5vh;
 }
 
