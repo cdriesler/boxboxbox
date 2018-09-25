@@ -13,7 +13,7 @@ namespace Cicero.Core.Logic.Parse
     {
         public static Request RequestFromPayload(string payload, Curve bounds)
         {
-            payload = "#input_line:((6,1),(0,4))#input_line:((4,6),(6,1))#input_line:((1,6),(3,0))#box_paired/thicken:((4,4),(5,1))#box_decorated/regulate:((2,3),(4,5))#box_lazy/elevate:((1,4),(5,3))";
+            //payload = "#input_line:((6,1),(0,4))#input_line:((4,6),(6,1))#input_line:((1,6),(3,0))#box_paired/thicken:((4,4),(5,1))#box_decorated/regulate:((2,3),(4,5))#box_lazy/elevate:((1,4),(5,3))";
 
             var data = payload.Split('#').ToList();
 
@@ -44,6 +44,12 @@ namespace Cicero.Core.Logic.Parse
             var range = maxCorner.X - minCorner.X;
             var rangeInc = range / 6;
 
+            var mid = (maxCorner + minCorner) / 2;
+            var reflectionPlane = Plane.WorldZX;
+            reflectionPlane.Origin = mid;
+
+            var xform = Transform.Mirror(reflectionPlane);
+
             var coords = data.Split(':')[1].Replace("(", "").Replace(")", "").Split(',');
 
             var startPt = new Point3d(Convert.ToDouble(coords[0]) * rangeInc, Convert.ToDouble(coords[1]) * rangeInc, 0);
@@ -52,7 +58,10 @@ namespace Cicero.Core.Logic.Parse
             startPt = startPt + minCorner;
             endPt = endPt + minCorner;
 
-            return new LineCurve(startPt, endPt);
+            var output = new LineCurve(startPt, endPt);
+            output.Transform(xform);
+
+            return output;
         }
 
         public static BoxInput BoxFromString(string data, Curve bounds)
@@ -62,6 +71,12 @@ namespace Cicero.Core.Logic.Parse
             var minCorner = dims.Min;
             var range = maxCorner.X - minCorner.X;
             var rangeInc = range / 6;
+
+            var mid = (maxCorner + minCorner) / 2;
+            var reflectionPlane = Plane.WorldZX;
+            reflectionPlane.Origin = mid;
+
+            var xform = Transform.Mirror(reflectionPlane);
 
             var splitData = data.Split(':');
 
@@ -79,13 +94,34 @@ namespace Cicero.Core.Logic.Parse
             endPt = endPt + minCorner;
 
             var boxGeo = new Rectangle3d(Plane.WorldXY, startPt, endPt).ToNurbsCurve();
+            boxGeo.Transform(xform);
 
             return new BoxInput(boxGeo, verb, adverb);
         }
 
         public static Solution SolutionFromResults(List<BoxResult> res)
         {
-            return null;
+            var solution = new Solution();
+            var style = new Styles();
+
+            foreach (BoxResult result in res)
+            {
+                solution.OutputCurves.Add(result.Original[0]);
+                style.FillColor.Add("none");
+                style.StrokeWeight.Add("0.11");
+                style.StrokeColor.Add("black");
+
+                foreach (Curve crv in result.InternalVerb)
+                {
+                    solution.OutputCurves.Add(crv);
+
+                    Style.Style.ApplyFromDictionary(result, style);
+                }
+            }
+
+            solution.OutputStyles = style;
+
+            return solution;
         }
     }
 }

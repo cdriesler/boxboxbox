@@ -22,7 +22,7 @@ namespace Cicero.Core.Components
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddTextParameter("Path", "P", "File path of svg to style.", GH_ParamAccess.item);
-            pManager.AddTextParameter("Style Pattern", "S", "Pattern of styles to correlate with curves.", GH_ParamAccess.list);
+            pManager.AddGenericParameter("Style Pattern", "S", "Pattern of styles to correlate with curves.", GH_ParamAccess.item);
 
             pManager[1].Optional = true;
         }
@@ -37,8 +37,8 @@ namespace Cicero.Core.Components
             string path = null;
             DA.GetData(0, ref path);
 
-            //List<string> pattern = null;
-            //DA.GetDataList(1, pattern);
+            Styles style = null;
+            DA.GetData(1, ref style);
 
             var existingData = System.IO.File.ReadAllLines(path).ToList();
 
@@ -48,6 +48,10 @@ namespace Cicero.Core.Components
             var targetDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\cicero\\staging\\" + name;
 
             //Style svg.
+            var strokeWidthIt = 0;
+            var strokeColorIt = 0;
+            var fillColorIt = 0;
+
             foreach (String line in existingData)
             {
                 var data = line;
@@ -60,18 +64,39 @@ namespace Cicero.Core.Components
                     continue;
                 }
 
+                if (line.Contains("stroke") && !line.Contains("width"))
+                {
+                    if (strokeColorIt >= style.StrokeColor.Count) strokeColorIt = style.StrokeColor.Count - 1;
+
+                    var newVal = $"stroke={style.StrokeColor[strokeColorIt]}";
+
+                    System.IO.File.AppendAllText(targetDir, newVal + Environment.NewLine);
+
+                    strokeColorIt++;
+                    continue;
+                }
+
                 if (line.Contains("stroke-width"))
                 {
-                    data = line.Replace("1", "0.01");
+                    if (strokeWidthIt >= style.StrokeWeight.Count) strokeWidthIt = style.StrokeWeight.Count - 1;
 
-                    System.IO.File.AppendAllText(targetDir, data + Environment.NewLine);
+                    var newVal = $"stroke-width={style.StrokeWeight[strokeWidthIt]}";
+
+                    System.IO.File.AppendAllText(targetDir, newVal + Environment.NewLine);
+
+                    strokeWidthIt++;
                     continue;
                 }
 
                 if (line.Contains("fill"))
                 {
-                    data = line.Replace("rgb(0,0,0)", "none");
-                    System.IO.File.AppendAllText(targetDir, data + Environment.NewLine);
+                    if (fillColorIt >= style.FillColor.Count) fillColorIt = style.FillColor.Count - 1;
+
+                    var newVal = $"stroke-width={style.FillColor[fillColorIt]}";
+
+                    System.IO.File.AppendAllText(targetDir, newVal + Environment.NewLine);
+
+                    fillColorIt++;
                     continue;
                 }
 

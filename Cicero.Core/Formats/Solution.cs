@@ -10,9 +10,14 @@ namespace Cicero.Core.Formats
     public class Solution
     {
         public List<Curve> OutputCurves;
-        public List<string> OutputStyles;
+        public Styles OutputStyles;
 
-        public Solution(List<Curve> crvs, List<string> styles)
+        public Solution()
+        {
+            OutputCurves = new List<Curve>();
+        }
+
+        public Solution(List<Curve> crvs, Styles styles)
         {
             OutputCurves = crvs;
             OutputStyles = styles;

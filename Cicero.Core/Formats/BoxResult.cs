@@ -23,6 +23,9 @@ namespace Cicero.Core.Formats
             External = new List<Curve>();
             InternalVerb = new List<Curve>();
             InternalAdverb = new List<Curve>();
+
+            Verb = "";
+            Adverb = "";
         }
 
         public BoxResult(List<Curve> original, List<Curve> external, List<Curve> internalVerb, List<Curve> internalAdverb)
@@ -31,6 +34,9 @@ namespace Cicero.Core.Formats
             External = external;
             InternalVerb = internalVerb;
             InternalAdverb = internalAdverb;
+
+            Verb = "";
+            Adverb = "";
         }
     }
 }

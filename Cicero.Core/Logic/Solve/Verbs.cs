@@ -25,7 +25,14 @@ namespace Cicero.Core.Logic.Solve
                 { "elevate", Elevate }
             };
 
-            return routes[box.Verb](input, box, pieces);
+            try
+            {
+                return routes[box.Verb](input, box, pieces);
+            }
+            catch (Exception e)
+            {
+                return new BoxResult(input);
+            }
         }
 
         public static BoxResult Template(Curve input, BoxInput box, List<Curve> pieces)
@@ -37,6 +44,7 @@ namespace Cicero.Core.Logic.Solve
             //Solving logic.
 
             res.InternalVerb = outputs;
+            res.Verb = "template";
 
             return res;
         }
@@ -58,8 +66,7 @@ namespace Cicero.Core.Logic.Solve
             outputs.Add(new LineCurve(endPt, new Point3d(endPt.X, box.Dims.MinCorner.Y, 0)));
 
             res.InternalVerb = outputs;
-
-            RhinoApp.WriteLine($"Enacted Regulate with {outputs.Count.ToString()} results.");
+            res.Verb = "regulate";
 
             return res;
         }
@@ -85,6 +92,7 @@ namespace Cicero.Core.Logic.Solve
             outputs.Add(new LineCurve(new Point3d(startPt.X - length, startPt.Y - length, 0), new Point3d(endPt.Y - length, endPt.Y - length, 0)));
 
             res.InternalVerb = outputs;
+            res.Verb = "thicken";
 
             return res;
         }
@@ -99,6 +107,7 @@ namespace Cicero.Core.Logic.Solve
                 x => outputs.Add(new LineCurve(pieces[1].PointAt(x), new Point3d(pieces[1].PointAt(x).X, input.PointAtStart.Y, 0))));
 
             res.InternalVerb = outputs;
+            res.Verb = "elevate";
 
             return res;
         }

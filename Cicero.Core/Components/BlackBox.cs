@@ -28,7 +28,7 @@ namespace Cicero.Core.Components
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddCurveParameter("Drawing", "C", "Curves to convert to svg.", GH_ParamAccess.list);
-            pManager.AddTextParameter("Style Pattern", "S", "Pattern for styler to read.", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Style Pattern", "S", "Pattern for styler to read.", GH_ParamAccess.item);
             pManager.AddCurveParameter("Debug", "d", "Debug geometry.", GH_ParamAccess.list);
         }
 
@@ -50,19 +50,8 @@ namespace Cicero.Core.Components
             Solution output = Parse.SolutionFromResults(res);
 
             //Write solution to output.
-            var outputGeometry = new List<Curve>();
-            var outputStyles = new List<string>();
-
-            /*
-            for (int i = 0; i < output.OutputCurves.Count; i++)
-            {
-                outputGeometry.Add(output.OutputCurves[i]);
-                outputStyles.Add(output.OutputStyles[i]);
-            }
-            */
-
-            DA.SetDataList(0, outputGeometry);
-            DA.SetDataList(1, outputStyles);
+            DA.SetDataList(0, output.OutputCurves);
+            DA.SetData(1, output.OutputStyles);
 
             //Debug routines.
             var debugGeo = new List<Curve>();
