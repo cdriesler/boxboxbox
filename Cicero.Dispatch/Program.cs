@@ -31,10 +31,12 @@ namespace Cicero.Dispatch
                 var id = docs.Result[0].Id;
                 var data = docs.Result[0].GetValue<string>("payload");
 
+                string[] dataToWrite = {id, data};
+
                 Console.WriteLine(data);
 
                 var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\cicero\\";
-                System.IO.File.WriteAllText(path + "current.dat", data);
+                System.IO.File.WriteAllLines(path + "current.dat", dataToWrite);
 
                 var rhinoIsDone = false;
 

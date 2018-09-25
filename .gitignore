@@ -2,6 +2,7 @@ build/
 .dart_tool/
 database_service.dart
 .firebase
+packages/
 
 bin/
 obj/

@@ -10,20 +10,34 @@ class BoxService {
     //fs.Firestore store = fb.firestore();
     //fs.CollectionReference ref = store.collection("projects").doc(projectNumber).collection("floors");
 
-    var allVerbs = List<String>();
-
-    allVerbs.add("cut");
-    allVerbs.add("split");
+    List<String> allVerbs = [
+      "regulate",
+      "capture",
+      "partner",
+      "hide",
+      "thicken",
+      "sheath",
+      "flourish",
+      "elevate",
+      "focus"
+    ];
 
     return allVerbs;
   } 
 
   Future<List<String>> getAllAdverbs() async {
-    var allAdverbs = List<String>();
-
-    allAdverbs.add("sluggish");
-    allAdverbs.add("inconsistent");
-    allAdverbs.add("multiplicative");
+    
+    List<String> allAdverbs = [
+      "paired",
+      "adversarial",
+      "decorated",
+      "layered",
+      "broken",
+      "flattened",
+      "fractal",
+      "lazy",
+      "twisted"
+    ];
 
     return allAdverbs;
   }
