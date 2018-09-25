@@ -3,6 +3,8 @@ import "dart:async";
 import "package:angular/angular.dart";
 import "package:angular_router/angular_router.dart";
 import "package:angular_forms/angular_forms.dart";
+import "package:firebase/firebase.dart";
+import 'package:firebase/firestore.dart' as fs;
 
 import "../../formats/box.dart";
 import "../../../services/box_service.dart";
@@ -259,7 +261,12 @@ class BlackBoxComponent implements OnInit {
     //current_data.text = current_data.text + makeLine(activeEndPoints[0], activeEndPoints[1]);
   }
 
+  final window.NodeValidatorBuilder _htmlValidator = window.NodeValidatorBuilder.common()
+  ..allowSvg();
+
   Future<void> onDeployPayload() async {
+
+
     var div = window.document.getElementById("main-data");
 
     //print(div.text);
@@ -270,6 +277,29 @@ class BlackBoxComponent implements OnInit {
     onClearSelection();
 
     div.text = "generating solution for request #" + id + ".";
+
+    fs.Firestore store = firestore();
+    fs.CollectionReference ref = store.collection("results");
+
+    ref.onSnapshot.listen((snapshot) {  
+        snapshot.docs.forEach((x) {
+          print(x.id);
+          if (x.id == id) {
+            var tryGetData = x.get("svg");
+            //var tryGetStatus = x.get("status");
+
+            //if (tryGetStatus != null) {
+            //  querySelector(".plan_svg").setInnerHtml(x.get("svg"), validator: _htmlValidator);
+            //}
+
+            if (tryGetData != null) {
+              window.document.getElementById("current-data").setInnerHtml(x.get("svg"), validator: _htmlValidator);
+              div.text = "";
+              //window.querySelector(".plan_svg").setInnerHtml(x.get("svg"), validator: _htmlValidator);
+            }
+          }
+        });
+    });
   }
 
   @override

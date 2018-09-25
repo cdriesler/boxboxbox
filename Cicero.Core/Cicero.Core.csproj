@@ -54,12 +54,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\BlackBox.cs" />
+    <Compile Include="Components\Styler.cs" />
     <Compile Include="Formats\BoxInput.cs" />
     <Compile Include="Formats\BoxResult.cs" />
     <Compile Include="Formats\Request.cs" />
     <Compile Include="Formats\Solution.cs" />
     <Compile Include="Logic\Parse\Parse.cs" />
+    <Compile Include="Logic\Solve\Check.cs" />
     <Compile Include="Logic\Solve\Solve.cs" />
+    <Compile Include="Logic\Solve\Utils.cs" />
+    <Compile Include="Logic\Solve\Verbs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

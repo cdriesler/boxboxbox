@@ -17,6 +17,14 @@ namespace Cicero.Core.Formats
         public List<Curve> InternalVerb;
         public List<Curve> InternalAdverb;
 
+        public BoxResult(Curve original)
+        {
+            Original = new List<Curve>{original};
+            External = new List<Curve>();
+            InternalVerb = new List<Curve>();
+            InternalAdverb = new List<Curve>();
+        }
+
         public BoxResult(List<Curve> original, List<Curve> external, List<Curve> internalVerb, List<Curve> internalAdverb)
         {
             Original = original;

@@ -77,6 +77,17 @@ namespace Cicero.Core.Components
                 debugGeo.Add(box.Bounds);
             }
 
+            foreach (BoxResult result in res)
+            {
+                RhinoApp.WriteLine(result.InternalVerb.Count.ToString());
+
+                foreach (Curve verbCrv in result.InternalVerb)
+                {
+                    debugGeo.Add(verbCrv);
+                }
+
+            }
+
             DA.SetDataList(2, debugGeo);
         }
 

@@ -12,7 +12,31 @@ namespace Cicero.Core.Logic.Solve
     {
         public static List<BoxResult> Request(Request req, Curve bounds)
         {
-            return null;
+            var results = new List<BoxResult>();
+
+            foreach (Curve inputCrv in req.Inputs)
+            {
+                var intersectsAny = false;
+
+                foreach (BoxInput box in req.Boxes)
+                {
+                    if (Check.IfCurvesIntersect(inputCrv, box.Bounds))
+                    {
+                        intersectsAny = true;
+
+                        results.Add(Verbs.Enact(inputCrv, box));
+
+                        //results.Add(Adverbs.Enact(verbRes));
+                    }
+                }
+
+                if (!intersectsAny)
+                {
+                    results.Add(new BoxResult(new List<Curve>{inputCrv}, new List<Curve>(), new List<Curve>(), new List<Curve>()));
+                }
+            }
+
+            return results;
         }
     }
 }

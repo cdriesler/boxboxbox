@@ -14,6 +14,7 @@ namespace Cicero.Dispatch
         {
             FirestoreDb db = FirestoreDb.Create("cicero-box");
             CollectionReference queue = db.Collection("queue");
+            CollectionReference results = db.Collection("results");
 
             while (true)
             {
@@ -55,6 +56,18 @@ namespace Cicero.Dispatch
                 }
 
                 //Dispatch svg to database.
+                var svgDoc = results.Document(id);
+                var svgData = System.IO.File.ReadAllText(path + "svg\\" + id + ".svg");
+
+                Dictionary<string, object> docData = new Dictionary<string, object>
+                {
+                    {"svg", svgData }
+                };
+
+                var x = svgDoc.SetAsync(docData);
+                x.Wait();
+
+                Console.WriteLine($"Dispatched results for {id} to firestore.");
 
                 End:
                 Thread.Sleep(1000);
