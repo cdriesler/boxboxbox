@@ -11,12 +11,27 @@ class SubmissionService {
     fs.Firestore store = fb.firestore();
     fs.DocumentReference ref = store.collection("queue").doc();
 
-    print("Submitting a request for project " + request.projectNumber);
+    //print("Submitting a request for project " + request.projectNumber);
 
     var data = {
       "project_number":request.projectNumber,
       "floor":request.floorNumber,
       "quotas":request.quotas
+    };
+
+    ref.set(data);
+
+    return ref.id;
+  }
+
+  Future<String> deployPayload(String payload) async {
+    fs.Firestore store = fb.firestore();
+    fs.DocumentReference ref = store.collection("queue").doc();
+
+    print("Document " + ref.id + " created.");
+
+    var data = {
+      "payload":payload,
     };
 
     ref.set(data);

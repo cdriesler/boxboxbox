@@ -7,6 +7,8 @@ import "services/project_service.dart";
 import "services/floor_service.dart";
 import "services/program_service.dart";
 import "services/submission_service.dart";
+import "services/box_service.dart";
+
 import "services/database_service.dart" as db;
 import "src/routes.dart";
 
@@ -14,7 +16,7 @@ import "src/routes.dart";
   selector: "my-app",
   templateUrl: "app_component.html",
   directives: [routerDirectives, NgStyle, NgClass, NgModel, NgClass],
-  providers: [ClassProvider(ProjectService), ClassProvider(FloorService), ClassProvider(ProgramService), ClassProvider(SubmissionService), ClassProvider(db.DatabaseService)],
+  providers: [ClassProvider(ProjectService), ClassProvider(FloorService), ClassProvider(ProgramService), ClassProvider(SubmissionService), ClassProvider(db.DatabaseService), ClassProvider(BoxService)],
   exports: [RoutePaths, Routes],
   styles: ['.active {border-color: black; outline-color: black; color: black}']
 )
