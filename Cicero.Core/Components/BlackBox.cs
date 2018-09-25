@@ -29,6 +29,7 @@ namespace Cicero.Core.Components
         {
             pManager.AddCurveParameter("Drawing", "C", "Curves to convert to svg.", GH_ParamAccess.list);
             pManager.AddTextParameter("Style Pattern", "S", "Pattern for styler to read.", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Debug", "d", "Debug geometry.", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -40,7 +41,7 @@ namespace Cicero.Core.Components
             DA.GetData(1, ref payload);
 
             //Parse geometry from text.
-            Request req = Parse.RequestFromPayload(payload);
+            Request req = Parse.RequestFromPayload(payload, bounds);
 
             //Do solution.
             List<BoxResult> res = Solve.Request(req, bounds);
@@ -52,14 +53,31 @@ namespace Cicero.Core.Components
             var outputGeometry = new List<Curve>();
             var outputStyles = new List<string>();
 
+            /*
             for (int i = 0; i < output.OutputCurves.Count; i++)
             {
                 outputGeometry.Add(output.OutputCurves[i]);
                 outputStyles.Add(output.OutputStyles[i]);
             }
+            */
 
             DA.SetDataList(0, outputGeometry);
             DA.SetDataList(1, outputStyles);
+
+            //Debug routines.
+            var debugGeo = new List<Curve>();
+
+            foreach (Curve inputGeo in req.Inputs)
+            {
+                debugGeo.Add(inputGeo);
+            }
+
+            foreach (BoxInput box in req.Boxes)
+            {
+                debugGeo.Add(box.Bounds);
+            }
+
+            DA.SetDataList(2, debugGeo);
         }
 
         protected override System.Drawing.Bitmap Icon
