@@ -1,4 +1,5 @@
 import "dart:html" as window;
+import "dart:async";
 import "package:angular/angular.dart";
 import "package:angular_router/angular_router.dart";
 import "package:angular_forms/angular_forms.dart";
@@ -154,7 +155,7 @@ class BlackBoxComponent implements OnInit {
     var coordY = coords[1];
 
     //Confirm points are not colinear.
-    if (activeCornerPoints.length > 1) {
+    if (activeCornerPoints.length >= 1) {
       var current = activeCornerPoints[0].split(',');
       var currentX = current[0];
       var currentY = current[1];
@@ -258,12 +259,17 @@ class BlackBoxComponent implements OnInit {
     //current_data.text = current_data.text + makeLine(activeEndPoints[0], activeEndPoints[1]);
   }
 
-  void onDeployPayload() {
+  Future<void> onDeployPayload() async {
     var div = window.document.getElementById("main-data");
 
     //print(div.text);
 
-    _submissionService.deployPayload(div.text);
+    var id = await _submissionService.deployPayload(div.text);
+
+    onClearData();
+    onClearSelection();
+
+    div.text = "generating solution for request #" + id + ".";
   }
 
   @override
