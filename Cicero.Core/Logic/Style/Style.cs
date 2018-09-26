@@ -21,7 +21,8 @@ namespace Cicero.Core.Logic.Style
             Dictionary<string, Func<Styles, Styles>> styleDict = new Dictionary<string, Func<Styles, Styles>>
             {
                 { "default", Default },
-                { "elevate", Medium }
+                { "elevate", Medium },
+                { "hide", Heavy_LightGrey }
             };
 
             try
@@ -48,6 +49,15 @@ namespace Cicero.Core.Logic.Style
             style.StrokeColor.Add("grey");
             style.FillColor.Add("none");
             style.StrokeWeight.Add("0.03");
+
+            return style;
+        }
+
+        public static Styles Heavy_LightGrey(Styles style)
+        {
+            style.StrokeColor.Add("gainsboro");
+            style.FillColor.Add("none");
+            style.StrokeWeight.Add("0.05");
 
             return style;
         }

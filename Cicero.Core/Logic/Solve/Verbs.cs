@@ -22,7 +22,8 @@ namespace Cicero.Core.Logic.Solve
                 { "regulate", Regulate },
                 { "capture", Capture },
                 { "thicken", Thicken },
-                { "elevate", Elevate }
+                { "elevate", Elevate },
+                { "hide", Hide }
             };
 
             try
@@ -108,6 +109,21 @@ namespace Cicero.Core.Logic.Solve
 
             res.InternalVerb = outputs;
             res.Verb = "elevate";
+
+            return res;
+        }
+
+        public static BoxResult Hide(Curve input, BoxInput box, List<Curve> pieces)
+        {
+            var res = new BoxResult(pieces[0]);
+
+            var outputs = new List<Curve>
+            {
+                pieces[2]
+            };
+
+            res.InternalVerb = outputs;
+            res.Verb = "hide";
 
             return res;
         }

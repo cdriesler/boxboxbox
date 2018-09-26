@@ -271,6 +271,13 @@ class BlackBoxComponent implements OnInit {
 
     //print(div.text);
 
+    if (div.text == "" || div.text[0]=="g") {
+      div.text = "";
+      print("Bad input, ignoring.");
+      warning = "Payload format was incorrect. Please try again.";
+      return;
+    }
+
     var id = await _submissionService.deployPayload(div.text);
 
     onClearData();
@@ -293,9 +300,19 @@ class BlackBoxComponent implements OnInit {
             //}
 
             if (tryGetData != null) {
-              window.document.getElementById("current-data").setInnerHtml(x.get("svg"), validator: _htmlValidator);
-              div.text = "";
+              if (tryGetData.toString().contains("failed")) {
+                warning = tryGetData;
+                div.text = "";
+                mode = "";
+              }
+              else {
+                window.document.getElementById("current-data").setInnerHtml(x.get("svg"), validator: _htmlValidator);
+                div.text = "";
+              }
               //window.querySelector(".plan_svg").setInnerHtml(x.get("svg"), validator: _htmlValidator);
+            }
+            else {
+              warning = "The server failed to deliver a result, please try again.";
             }
           }
         });

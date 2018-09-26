@@ -40,6 +40,7 @@ namespace Cicero.Dispatch
                 System.IO.File.WriteAllLines(path + "current.dat", dataToWrite);
 
                 var rhinoIsDone = false;
+                var loopCount = 0;
 
                 var res = queue.Document(id).DeleteAsync();
                 res.Wait();
@@ -51,13 +52,19 @@ namespace Cicero.Dispatch
                         rhinoIsDone = true;
                     }
 
+                    if (loopCount > 30)
+                    {
+                        break;
+                    }
+
                     Console.WriteLine("Rhino is computing...");
+                    loopCount++;
                     Thread.Sleep(1000);
                 }
 
                 //Dispatch svg to database.
                 var svgDoc = results.Document(id);
-                var svgData = System.IO.File.ReadAllText(path + "svg\\" + id + ".svg");
+                var svgData = loopCount > 30 ? "The system failed to generate a solution, please try again." : System.IO.File.ReadAllText(path + "svg\\" + id + ".svg");
 
                 Dictionary<string, object> docData = new Dictionary<string, object>
                 {
@@ -70,7 +77,7 @@ namespace Cicero.Dispatch
                 Console.WriteLine($"Dispatched results for {id} to firestore.");
 
                 End:
-                Thread.Sleep(1000);
+                Thread.Sleep(3000);
             }
         }
     }

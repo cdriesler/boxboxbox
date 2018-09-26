@@ -35,7 +35,7 @@ namespace Cicero.Core.Logic.Solve
             }
             */
 
-            return new List<Curve>{new LineCurve(input.PointAtStart, ccx[0].PointA), new LineCurve(ccx[0].PointA, ccx[1].PointA)};
+            return new List<Curve>{new LineCurve(input.PointAtStart, ccx[0].PointA), new LineCurve(ccx[0].PointA, ccx[1].PointA), new LineCurve(ccx[1].PointA, input.PointAtEnd)};
         }
     }
 }
