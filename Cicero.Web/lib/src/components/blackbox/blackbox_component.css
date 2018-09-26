@@ -56,7 +56,7 @@
     margin-left: 4vh;
     padding: 2vh;
     
-    border: 2pt solid black;
+    border: 3px solid black;
 
     background: none;
 }
@@ -176,7 +176,7 @@
 .input-list {
     margin-bottom: 0.5vh;
 
-    font-size: 1.1vh;
+    font-size: 1.4vh;
     line-height: 2.2vh;
 
     list-style: none;

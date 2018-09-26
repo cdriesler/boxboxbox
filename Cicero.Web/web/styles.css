@@ -63,6 +63,16 @@ html * {
   color: black;
 }
 
+.not-implemented {
+  cursor: pointer;
+}
+
+.not-implemented:hover {
+  outline-color: brown !important;
+  border-color: brown !important;
+  color: brown !important;
+}
+
 .active_link {
   outline-color: black;
   border-color: black;
@@ -73,7 +83,7 @@ html * {
   grid-row: 1 / span 1;
   grid-column: 1 / span 5;
   font-size: 3.25vh;
-  line-height: 7vh;
+  line-height: 6vh;
   vertical-align: center;
 
   padding-left: 2vh;
@@ -85,7 +95,11 @@ html * {
   grid-column: 1 / span 5;
   grid-row: 4 / span 1;
 
+  margin-top: 1vh;
   padding-top: 3px;
+
+  font-size: 1.5vh;
+  font-weight: normal;
 
   background-color: white;
   z-index: 1;
@@ -93,13 +107,18 @@ html * {
   border-top: 3px solid black;
 }
 
+.footer a {
+  color: gainsboro;
+
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: black;
+}
+
 .version {
   margin-left: 2vh;
-
-  font-size: 1.5vh;
-  font-weight: normal;
-
-  margin-top: 1vh;
 }
 
 .version a {

@@ -6,7 +6,7 @@ class RoutePaths {
   static final project = RoutePath(path: "${projects.path}/:$idParam");
   static final projects = RoutePath(path: "projects");
   static final dashboard = RoutePath(path: "dashboard");
-  static final blackbox = RoutePath(path: "blackbox");
+  static final cicero = RoutePath(path: "cicero");
 }
 
 String getId(Map<String, String> parameters) {

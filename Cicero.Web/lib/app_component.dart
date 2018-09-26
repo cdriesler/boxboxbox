@@ -23,7 +23,8 @@ import "src/routes.dart";
 class AppComponent{
   var firebase = new db.DatabaseService();
 
-  final title = "Cicero";
+  final title = "box/box/box";
+  //&#9632; &#9632; &#9632;
   
   var name = "Angular";
 }
