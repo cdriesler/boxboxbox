@@ -29,6 +29,7 @@ class BlackBoxComponent implements OnInit {
   String mode = "";
 
   String warning = "";
+  bool resultReceived = false;
 
   String activeInput = "";
   String activeAdverb = "";
@@ -264,8 +265,17 @@ class BlackBoxComponent implements OnInit {
   final window.NodeValidatorBuilder _htmlValidator = window.NodeValidatorBuilder.common()
   ..allowSvg();
 
-  Future<void> onDeployPayload() async {
+  void SolutionTimeout() {
+    if (!resultReceived) {
+      warning = "Server request timed out. It may be offline or your request may not be valid. Please try again.";
+    }
 
+    onClearData();
+    onClearSelection();
+  }
+
+  Future<void> onDeployPayload() async {
+    resultReceived = false;
 
     var div = window.document.getElementById("main-data");
 
@@ -304,19 +314,28 @@ class BlackBoxComponent implements OnInit {
                 warning = tryGetData;
                 div.text = "";
                 mode = "";
+
+                resultReceived = true;
               }
               else {
                 window.document.getElementById("current-data").setInnerHtml(x.get("svg"), validator: _htmlValidator);
                 div.text = "";
+
+                resultReceived = true;
               }
               //window.querySelector(".plan_svg").setInnerHtml(x.get("svg"), validator: _htmlValidator);
             }
             else {
               warning = "The server failed to deliver a result, please try again.";
+
+              resultReceived = true;
             }
           }
         });
+
+        new Timer(new Duration(seconds: 15), SolutionTimeout);
     });
+
   }
 
   @override
