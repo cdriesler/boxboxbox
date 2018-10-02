@@ -1,4 +1,3 @@
-import "dart:html";
 import "package:angular/angular.dart";
 import "package:angular_router/angular_router.dart";
 import "package:angular_forms/angular_forms.dart";
@@ -28,32 +27,4 @@ class AppComponent{
   //&#9632; &#9632; &#9632;
   
   var name = "Angular";
-
-  void updateColor() {
-    document.getElementById("main-box").classes
-      ..remove("main-box")
-      ..add("main-canvas")
-      ..add("main-box-animation");;
-    //print("added class");
-  }
-
-  void goToSource() {
-    
-  }
-
-  void addNavLineLeft() {
-    document.getElementById("nav-line-left").classes.add("nav-line-left");
-  }
-
-  void removeNavLineLeft() {
-    document.getElementById("nav-line-left").classes.remove("nav-line-left");
-  }
-
-  void addNavLineRight() {
-    document.getElementById("nav-line-right").classes.add("nav-line-right");
-  }
-
-  void removeNavLineRight() {
-    document.getElementById("nav-line-right").classes.remove("nav-line-right");
-  }
 }

@@ -12,116 +12,11 @@ html * {
   height: 100%;
 
   display: grid;
-  grid-template-columns: 1fr 28vh 10vh 28vh 1fr;
-  grid-template-rows: 2vh 1fr 28vh 10vh 28vh 1fr 2vh;
+  grid-template-columns: 20% 10% 5% 60% 5%;
+  grid-template-rows: 7% 5% 84% 4%;
 
   overflow-y: hidden;
   z-index: 10;
-}
-
-.main-box {
-  grid-row: 4 / span 1;
-  grid-column: 3 / span 1;
-
-  width: 100%;
-  height: 100%;
-
-  background: black;
-
-  z-index: 10;
-}
-
-.main-canvas {
-  grid-row: 3 / span 3;
-  grid-column: 2 / span 3;
-
-  width: 100%;
-  height: 100%;
-
-  outline: 3px solid black;
-  outline-offset: 10px;
-}
-
-.main-box-animation {
-  animation-name: to_grey;
-  animation-duration: 4s;
-}
-
-@keyframes to_grey {
-  0%   {outline-color: white;}
-  25%  {outline-color: white;}
-  100% {background-color: white; outline-color: black;}
-}
-
-.main-box:hover {
-  cursor: pointer;
-  outline: 3px solid black;
-  outline-offset: 10px;
-}
-
-.nav {
-  font-size: 3.5vh;
-  line-height: 10vh;
-  vertical-align: center;
-
-  color: gainsboro;
-
-  background: none;
-
-  text-decoration: none;
-}
-
-.nav:hover {
-  cursor: pointer;
-  color: black;
-}
-
-.nav-right {
-  grid-column: 4 / span 1;
-  grid-row: 4 / span 1;
-
-  width: 100%;
-
-  text-align: right;
-
-  background: none;
-}
-
-.nav-left {
-  grid-column: 2 / span 1;
-  grid-row: 4 / span 1;
-
-  width: 100%;
-
-  text-align: left;
-
-  background: none;
-}
-
-.nav-line-right {
-  grid-column: 3 / span 3;
-  grid-row: 4 / span 1;
-
-  z-index: -5;
-
-  position: relative;
-  top: 5vh;
-
-  height: 3px;
-  background-color: black;
-}
-
-.nav-line-left {
-  grid-column: 1 / span 3;
-  grid-row: 4 / span 1;
-
-  z-index: -5;
-
-  position: relative;
-  top: 5vh;
-
-  height: 3px;
-  background-color: black;
 }
 
 #wrapper {
