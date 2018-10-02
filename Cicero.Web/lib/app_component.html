@@ -1,14 +1,17 @@
 <div class="main" id="wrapper">
-<div class="title">{{title}} > </div>
+<div class="title">{{title}}</div>
 <div class="navigation">
     <a [routerLink]="RoutePaths.dashboard.toUrl()" [routerLinkActive]="'active'">INTENT</a> &nbsp;
-    <a [routerLink]="RoutePaths.blackbox.toUrl()" [routerLinkActive]="'active'">BLKBOX</a>
-    <a href="https://github.com/cdriesler/cicero" target="_blank">SOURCE</a>
+    <a [routerLink]="RoutePaths.cicero.toUrl()" [routerLinkActive]="'active'">CICERO</a>
+    <a class="not-implemented" >SENECA</a>
+    <a class="not-implemented" >THEANO</a>
+    <a class="not-implemented" >POMPEY</a>
+    <!-- <a href="https://github.com/cdriesler/cicero" target="_blank">SOURCE</a> -->
 </div>
 
 <div class="content">
 <router-outlet [routes]="Routes.all"></router-outlet>
 </div>
 
-<div class="footer"><span class="version">v0.0.4 &nbsp; Last updated: 25 September 2018</span></div>
+<div class="footer"><span class="version">v0.0.5 &nbsp; Last updated: 29 September 2018</span> &nbsp; [ <a href="https://github.com/cdriesler/cicero" target="_blank">View Source</a> ] </div>
 </div>

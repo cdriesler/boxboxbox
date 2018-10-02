@@ -1,12 +1,27 @@
 .news {
-    width: 100%;
     height: 100%;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
 
     min-height: 80vh;
 
-    text-align: center;
-    line-height: 80vh;
+    margin-top: 3vh;
+    margin-left: 2vh;
+
+    text-align: left;
+    line-height: 2.1vh;
     vertical-align: middle;
 
     font-size: 2vh;
+}
+
+.news a {
+    color: gainsboro;
+    text-decoration: none;
+}
+
+.news a:hover {
+    color: black;
+    cursor: pointer;
 }
