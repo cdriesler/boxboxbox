@@ -11,10 +11,7 @@
 <div class="drawing-square-zone">
     <div class="drawing-square" >
 
-        <div class="drawing-canvas" id="current-data" *ngIf="mode==''">
-            <svg width="66vh" height="66vh" style="background:none">
-                
-            </svg>
+        <div class="drawing-canvas" id="current-data" style="z-index:-10;" *ngIf="mode==''">
         </div>
 
         <div class="drawing-canvas" id="canvas" *ngIf="mode=='line' || mode=='polyline'">

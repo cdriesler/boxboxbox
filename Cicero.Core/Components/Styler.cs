@@ -56,6 +56,14 @@ namespace Cicero.Core.Components
             {
                 var data = line;
 
+                if (line.Contains("width") && line.Contains("1000") && line.Contains("500"))
+                {
+                    data = line.Replace("1000", "132vh").Replace("500", "66vh");
+
+                    System.IO.File.AppendAllText(targetDir, data + Environment.NewLine);
+                    continue;
+                }
+
                 if (line.Contains("width") && line.Contains("1000"))
                 {
                     data = line.Replace("1000", "66vh");
