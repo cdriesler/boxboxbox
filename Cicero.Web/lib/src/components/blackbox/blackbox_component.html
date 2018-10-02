@@ -11,13 +11,10 @@
 <div class="drawing-square-zone">
     <div class="drawing-square" >
 
-        <div class="drawing-canvas" id="current-data" *ngIf="mode==''">
-            <svg width="66vh" height="66vh" style="background:none">
-                
-            </svg>
+        <div class="drawing-canvas" id="current-data" style="z-index:-10;" *ngIf="mode==''">
         </div>
 
-        <div class="drawing-canvas" id="canvas" *ngIf="mode=='input'">
+        <div class="drawing-canvas" id="canvas" *ngIf="mode=='line' || mode=='polyline'">
             <!--
             <div class="top-edge" id="top-edge" (click)="onSelectEdge($event)"></div>
             <div class="bottom-edge" (click)="onSelectEdge($event)"></div>
@@ -115,8 +112,8 @@
         </li>
     </ul>
 
-    <div class="submission" (click)="onSubmitInput()" *ngIf="mode != 'input'">&lt;</div>
-    <div *ngIf="mode=='input'" style="text-align:right; margin-bottom: 2vh;"><span class="clear-selection" (click)="onClearSelection()">X</span> <span class="submission" (click)="onCommitInput()">&gt;</span></div>
+    <div class="submission" (click)="onSubmitInput()" *ngIf="mode==''">&lt;</div>
+    <div *ngIf="mode=='line' || mode=='polyline'" style="text-align:right; margin-bottom: 2vh;"><span class="clear-selection" (click)="onClearSelection()">X</span> <span class="submission" (click)="onCommitInput()">&gt;</span></div>
 
     <div class="subtitle">boxes :</div>
 

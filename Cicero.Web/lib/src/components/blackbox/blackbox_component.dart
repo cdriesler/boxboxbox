@@ -63,7 +63,7 @@ class BlackBoxComponent implements OnInit {
     }
 
     //Show line guides.
-    mode = "input";
+    mode = activeInput;
   }
 
   void onCommitInput() {
@@ -72,9 +72,21 @@ class BlackBoxComponent implements OnInit {
       return;
     }
 
+    var data = "";
+
     var div = window.document.getElementById("main-data");
 
-    var data = "#input_line:((" + activeEndPoints[0] + "),(" + activeEndPoints[1] + "))";
+    if (activeInput == "line") {
+
+    data = "#input_line:((" + activeEndPoints[0] + "),(" + activeEndPoints[1] + "))";
+    }
+    else if (activeInput == "polyline") {
+
+      for (int i = 0; i < activeEndPoints.length - 1; i++) {
+
+          data = data + "#input_line:((" + activeEndPoints[i] + "),(" + activeEndPoints[i+1] + "))";
+      }
+    }
 
     div.text = div.text + data;
 
@@ -117,6 +129,11 @@ class BlackBoxComponent implements OnInit {
     var coords = coord.split(',');
     var coordX = coords[0];
     var coordY = coords[1];
+
+    if(activeInput == "polyline") {
+      activeEndPoints.add(coord);
+      return;
+    }
 
     //Confirm points are not on the same edge.
     if (activeEndPoints.length == 1) {
@@ -268,10 +285,10 @@ class BlackBoxComponent implements OnInit {
   void SolutionTimeout() {
     if (!resultReceived) {
       warning = "Server request timed out. It may be offline or your request may not be valid. Please try again.";
-    }
 
-    onClearData();
-    onClearSelection();
+      onClearData();
+      onClearSelection();
+    }
   }
 
   Future<void> onDeployPayload() async {
@@ -333,7 +350,7 @@ class BlackBoxComponent implements OnInit {
           }
         });
 
-        new Timer(new Duration(seconds: 15), SolutionTimeout);
+        new Timer(new Duration(seconds: 25), SolutionTimeout);
     });
 
   }
@@ -345,6 +362,7 @@ class BlackBoxComponent implements OnInit {
     //edgeGuides = (await _drawingService.getEdgeGuides());
     //innerGuides = (await _drawingService.getInnerGuides());
 
-    allInputs.add("linear");
+    allInputs.add("line");
+    allInputs.add("polyline");
   }
 }
