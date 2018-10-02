@@ -106,10 +106,20 @@ namespace Cicero.Core.Logic.Parse
 
             foreach (BoxResult result in res)
             {
-                solution.OutputCurves.Add(result.Original[0]);
-                style.FillColor.Add("none");
-                style.StrokeWeight.Add("0.11");
-                style.StrokeColor.Add("black");
+                if (result.Verb != "error")
+                {
+                    solution.OutputCurves.Add(result.Original[0]);
+                    style.FillColor.Add("none");
+                    style.StrokeWeight.Add("0.06");
+                    style.StrokeColor.Add("black");
+                }
+                else
+                {
+                    solution.OutputCurves.Add(result.Original[0]);
+
+                    Style.Style.ApplyFromDictionary(result, style);
+                }
+
 
                 foreach (Curve crv in result.InternalVerb)
                 {

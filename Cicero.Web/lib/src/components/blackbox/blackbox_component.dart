@@ -350,7 +350,7 @@ class BlackBoxComponent implements OnInit {
           }
         });
 
-        new Timer(new Duration(seconds: 15), SolutionTimeout);
+        new Timer(new Duration(seconds: 25), SolutionTimeout);
     });
 
   }

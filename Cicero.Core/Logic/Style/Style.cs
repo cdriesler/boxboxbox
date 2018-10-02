@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cicero.Core.Formats;
+using Rhino;
 
 namespace Cicero.Core.Logic.Style
 {
@@ -15,14 +16,15 @@ namespace Cicero.Core.Logic.Style
             {
                 style.FillColor.Add("none");
                 style.StrokeColor.Add("gainsboro");
-                style.StrokeWeight.Add("0.05");
+                style.StrokeWeight.Add("0.03");
             }
 
             Dictionary<string, Func<Styles, Styles>> styleDict = new Dictionary<string, Func<Styles, Styles>>
             {
                 { "default", Default },
                 { "elevate", Medium },
-                { "hide", Heavy_LightGrey }
+                { "hide", Heavy_LightGrey },
+                { "error", Error }
             };
 
             try
@@ -44,11 +46,22 @@ namespace Cicero.Core.Logic.Style
             return style;
         }
 
+        public static Styles Error(Styles style)
+        {
+            RhinoApp.WriteLine("Error line generated and styled.");
+
+            style.StrokeColor.Add("darkred");
+            style.FillColor.Add("none");
+            style.StrokeWeight.Add("0.02");
+
+            return style;
+        }
+
         public static Styles Medium(Styles style)
         {
             style.StrokeColor.Add("grey");
             style.FillColor.Add("none");
-            style.StrokeWeight.Add("0.03");
+            style.StrokeWeight.Add("0.02");
 
             return style;
         }
@@ -57,7 +70,7 @@ namespace Cicero.Core.Logic.Style
         {
             style.StrokeColor.Add("gainsboro");
             style.FillColor.Add("none");
-            style.StrokeWeight.Add("0.05");
+            style.StrokeWeight.Add("0.03");
 
             return style;
         }

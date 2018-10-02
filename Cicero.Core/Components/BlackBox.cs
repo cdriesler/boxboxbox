@@ -46,6 +46,9 @@ namespace Cicero.Core.Components
             //Do solution.
             List<BoxResult> res = Solve.Request(req, bounds);
 
+            //Search for corner cases.
+            res = Solve.CornerCases(res, bounds);
+
             //Convert solution to ordered list of curves and styles.
             Solution output = Parse.SolutionFromResults(res);
 
