@@ -7,3 +7,10 @@ packages/
 bin/
 obj/
 .vs/
+
+.DS_Store
+
+.packages
+.pub/
+
+.flutter-plugins
