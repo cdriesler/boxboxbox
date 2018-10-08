@@ -5,6 +5,7 @@ import "dashboard_component.template.dart" as dashboard_template;
 import "project_list_component.template.dart" as project_list_template;
 import "project_component.template.dart" as project_template;
 import "components/blackbox/blackbox_component.template.dart" as encase_template;
+import "components/cicero/cicero_component.template.dart" as cicero_template;
 
 export "route_paths.dart";
 
@@ -26,7 +27,7 @@ class Routes {
 
   static final cicero = RouteDefinition(
     routePath: RoutePaths.cicero,
-    component: encase_template.BlackBoxComponentNgFactory,
+    component: cicero_template.CiceroComponentNgFactory,
   );
 
   static final all = <RouteDefinition>[
