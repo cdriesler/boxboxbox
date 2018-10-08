@@ -1,3 +1,5 @@
+import "dart:html";
+import "dart:async";
 import "package:angular/angular.dart";
 import "package:angular_router/angular_router.dart";
 import "package:angular_forms/angular_forms.dart";
@@ -20,11 +22,39 @@ import "src/routes.dart";
   exports: [RoutePaths, Routes],
   styles: ['.active {border-color: black; outline-color: black; color: black}']
 )
-class AppComponent{
+class AppComponent implements OnInit{
   var firebase = new db.DatabaseService();
 
   final title = "box/box/box";
   //&#9632; &#9632; &#9632;
+
+  Future pause(Duration d) => new Future.delayed(d);
   
   var name = "Angular";
+
+  Future TypeMessages() async {
+    var message = document.getElementById("temp");
+    message.setInnerHtml("");
+
+    var messages = List<String>();
+    messages.add("boxboxbox is currently getting redesigned");
+    messages.add("functionality will return soon!");
+    messages.add("last updated 08 OCT 2018");
+
+    for (int i = 0; i < messages.length; i++) {
+      for (int j = 0; j < messages[i].length; j++) {
+        message.setInnerHtml(message.innerHtml + messages[i][j]);
+
+        await pause(const Duration(milliseconds: 20));
+        
+      }
+
+      message.setInnerHtml(message.innerHtml + "<br>");
+    }
+  }
+
+  @override 
+  void ngOnInit() async {
+    TypeMessages();
+  }
 }
