@@ -66,10 +66,10 @@ void setup() {
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);
   pinMode(button3, INPUT);
-  //pinMode(button4, INPUT);
-  //pinMode(button5, INPUT);
-  //pinMode(button6, INPUT);
-  //pinMode(button7, INPUT);
+  pinMode(button4, INPUT);
+  pinMode(button5, INPUT);
+  pinMode(button6, INPUT);
+  pinMode(button7, INPUT);
 }
 
 void loop() {
@@ -78,10 +78,10 @@ void loop() {
   b1State = digitalRead(button1);
   b2State = digitalRead(button2);
   b3State = digitalRead(button3);
-  //b4State = digitalRead(button4);
-  //b5State = digitalRead(button5);
-  //b6State = digitalRead(button6);
-  //b7State = digitalRead(button7);
+  b4State = digitalRead(button4);
+  b5State = digitalRead(button5);
+  b6State = digitalRead(button6);
+  b7State = digitalRead(button7);
 
   Serial.print(b0State);
   Serial.print(" / ");
@@ -90,19 +90,21 @@ void loop() {
   Serial.print(b2State);
   Serial.print(" / ");
   Serial.print(b3State);
+  Serial.print(" / ");
+  Serial.print(b4State);
+  Serial.print(" / ");
+  Serial.print(b5State);
+  Serial.print(" / ");
+  Serial.print(b6State);
+  Serial.print(" / ");
+  Serial.print(b7State);
   Serial.println();
 
-/*
-  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
-  if (buttonState == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPin, HIGH);
-  } else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
-  }
-*/
+    servoBot.write(pos);              // tell servo to go to position in variable 'pos'
+    servoMid.write(pos);
+    servoTop.write(pos);
 
+/*
   if (increasing == true) {
     pos += 2;
 
@@ -127,4 +129,6 @@ void loop() {
       increasing = true;
     }
   }
+
+  */
 }
