@@ -39,7 +39,7 @@ class AppComponent implements OnInit{
     var messages = List<String>();
     messages.add("boxboxbox is currently getting redesigned");
     messages.add("functionality will return soon!");
-    messages.add("last updated 08 OCT 2018");
+    messages.add("last updated 19 OCT 2018");
 
     for (int i = 0; i < messages.length; i++) {
       for (int j = 0; j < messages[i].length; j++) {
