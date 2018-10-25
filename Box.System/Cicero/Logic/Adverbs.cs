@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Box.System.Cicero.Parse
+namespace Box.System.Cicero.Logic
 {
-    public static class Parse
+    public static class Adverbs
     {
 
     }

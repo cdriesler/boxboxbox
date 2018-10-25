@@ -16,6 +16,12 @@ namespace Box.System.Cicero.Formats.Element
 
         public BoundaryData Dims;
 
+        public List<Curve> InputSegments; //Segment of input line captured by box.
+        public List<Curve> VerbResults; //Result of verb operation on InputContent.
+        public List<Curve> AdverbResults; //Result of adverb operation in AdverbContent.
+
+        public List<Curve> ErrorCurves;
+
         public BoxElement(Curve bounds, string verb, string adverb)
         {
             Bounds = bounds;
@@ -23,6 +29,8 @@ namespace Box.System.Cicero.Formats.Element
             Adverb = adverb;
 
             Dims = new BoundaryData(bounds);
+
+            ErrorCurves = new List<Curve>();
         }
     }
 }

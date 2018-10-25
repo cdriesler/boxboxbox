@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Google.Cloud.Firestore;
+using Rhino.Compute;
+using Rhino.Geometry;
 
 namespace Box.Core
 {
@@ -15,6 +17,8 @@ namespace Box.Core
             FirestoreDb db = FirestoreDb.Create("cicero-box");
             CollectionReference queue = db.Collection("queue");
             CollectionReference results = db.Collection("results");
+
+            ComputeServer.ApiToken = "cdriesler.iv@gmail.com";
 
             while (true)
             {
@@ -27,7 +31,19 @@ namespace Box.Core
 
                 Console.WriteLine($"{numDocs.ToString()} documents in queue.");
 
-                if (numDocs == 0) goto End;
+                if (numDocs == 0)
+                {
+                    Thread.Sleep(3000);
+                    continue;
+
+                    /*
+                    var circleA = new Circle(new Point3d(0, 1, 0), 1.5).ToNurbsCurve();
+                    var circleB = new Circle(new Point3d(0, -1, 0), 1.75).ToNurbsCurve();
+
+                    var joinedCircles = Rhino.Compute.CurveCompute.CreateBooleanUnion(new Curve[] {circleA, circleB});
+                    Console.WriteLine(joinedCircles[0].GetLength().ToString());
+                    */
+                };
 
                 var id = docs.Result[0].Id;
                 var data = docs.Result[0].GetValue<string>("payload");
@@ -76,7 +92,6 @@ namespace Box.Core
 
                 Console.WriteLine($"Dispatched results for {id} to firestore.");
 
-                End:
                 Thread.Sleep(3000);
             }
         }

@@ -51,11 +51,14 @@
     <Compile Include="Formats\Data\BoundaryData.cs" />
     <Compile Include="Formats\Drawing\DrawingLayer.cs" />
     <Compile Include="Formats\Drawing\Drawing.cs" />
+    <Compile Include="Formats\Request\CiceroRequest.cs" />
     <Compile Include="Formats\Style\Style.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RhinoCompute.cs" />
-    <Compile Include="Styles\StyleDictionary.cs" />
+    <Compile Include="Styles\CiceroStyles.cs" />
+    <Compile Include="Styles\CommonStyles.cs" />
+    <Compile Include="Transformations\Curves.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>

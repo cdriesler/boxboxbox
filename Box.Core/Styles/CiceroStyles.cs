@@ -7,9 +7,9 @@ using Box.Core.Formats.Style;
 
 namespace Box.Core.Styles
 {
-    public static class StyleDictionary
+    public static class CiceroStyles
     {
-        public static Style GetStyle(string styleName)
+        public static Style Get(string styleName)
         {
             return null;
         }
