@@ -53,12 +53,14 @@
     <Compile Include="Formats\Drawing\Drawing.cs" />
     <Compile Include="Formats\Request\CiceroRequest.cs" />
     <Compile Include="Formats\Style\Style.cs" />
+    <Compile Include="Geometry\Create\Curves.cs" />
+    <Compile Include="Geometry\Modify\Curves.cs" />
+    <Compile Include="Geometry\Verify\Curves.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RhinoCompute.cs" />
     <Compile Include="Styles\CiceroStyles.cs" />
     <Compile Include="Styles\CommonStyles.cs" />
-    <Compile Include="Transformations\Curves.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>

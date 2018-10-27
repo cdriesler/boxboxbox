@@ -11,7 +11,7 @@ namespace Box.Core.Formats.Drawing
     {
         public List<DrawingLayer> Layers;
         public List<string> LayerOrder;
-        public Dictionary<string, List<Curve>> LayerGeometry;
+        public Dictionary<string, List<Curve>> LayerGeometry; //Layer name, geometry
 
         public Curve Bounds;
         public Dictionary<string, string> LayerSvg;

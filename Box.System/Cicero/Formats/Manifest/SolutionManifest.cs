@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Box.Core.Geometry;
+using Box.Core.Geometry.Modify;
 using Box.System.Cicero.Formats.Element;
 using Rhino.Geometry;
 
@@ -24,7 +26,16 @@ namespace Box.System.Cicero.Formats.Manifest
         /// </summary>
         public void RunContainment()
         {
-            
+            foreach (BoxElement box in BoxElements)
+            {
+                foreach (Curve input in InputLines)
+                {
+                    if (Core.Geometry.Verify.Curves.CurvesIntersect(input, box.Bounds))
+                    {
+                        box.InputSegments.AddRange(Curves.TrimLineWithRegion(box.Bounds, input));
+                    }
+                }          
+            }
         }
 
         /// <summary>
