@@ -37,7 +37,7 @@ namespace Box.System.Cicero.Formats.Manifest
                 {
                     if (Core.Geometry.Verify.Curves.CurvesIntersect(input, box.Bounds))
                     {
-                        box.InputSegments.AddRange(Curves.TrimLineWithRegion(box.Bounds, input));
+                        box.InputSegments.Add(Curves.TrimLineWithRegion(box.Bounds, input));
                     }
                 }          
             }

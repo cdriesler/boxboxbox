@@ -13,6 +13,7 @@ namespace Box.System.Cicero.Logic
         {
             { "default", Default },
             { "regulate", Regulate },
+            { "concentrate", Concentrate }
         };
 
         public static Style Get(string styleName)
@@ -46,7 +47,19 @@ namespace Box.System.Cicero.Logic
             {
                 Fill = "none",
                 Stroke = "black",
-                StrokeWidth = "0.17"
+                StrokeWidth = "0.07"
+            };
+
+            return style;
+        }
+
+        public static Style Concentrate()
+        {
+            var style = new Style()
+            {
+                Fill = "none",
+                Stroke = "black",
+                StrokeWidth = "0.03",
             };
 
             return style;

@@ -17,12 +17,13 @@ namespace Box.Core.Geometry.Modify
         /// <param name="region">Region to trim with.</param>
         /// <param name="inside">Return segments inside the region if true, outside if false.</param>
         /// <returns></returns>
-        public static List<Curve> TrimLineWithRegion(Curve line, Curve region, bool inside = true)
+        public static Curve TrimLineWithRegion(Curve line, Curve region, bool inside = true)
         {
             var ccx = Intersection.CurveCurve(line, region, 0.1, 0.1);
 
             var cxPoints = ccx.Where(x => x.IsPoint).Select(x => x.PointA).ToList();
 
+            /*
             var segments = new List<Curve>();
 
             for (int i = 0; i < cxPoints.Count; i++)
@@ -34,6 +35,9 @@ namespace Box.Core.Geometry.Modify
             }
 
             return inside ? segments.Where(x => Verify.Curves.CurveInRegion(region, x)).ToList() : segments.Where(x => !Verify.Curves.CurveInRegion(region, x)).ToList();
+            */
+
+            return new LineCurve(cxPoints[0], cxPoints[1]).ToNurbsCurve();
         }
     }
 }

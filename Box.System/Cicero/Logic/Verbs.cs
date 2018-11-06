@@ -14,6 +14,7 @@ namespace Box.System.Cicero.Logic
         static readonly Dictionary<string, Func<BoxElement, bool>> VerbMethods = new Dictionary<string, Func<BoxElement, bool>>()
         {
             { "regulate", Regulate },
+            { "concentrate", Concentrate }
         };
 
         public static void Enact(BoxElement box)
@@ -47,6 +48,21 @@ namespace Box.System.Cicero.Logic
                 };
 
                 box.VerbResults.AddRange(resultCurves);
+            }
+
+            return true;
+        }
+
+        private static bool Concentrate(BoxElement box)
+        {
+            foreach (Curve crv in box.InputSegments)
+            {
+                crv.DivideByCount(7, true, out Point3d[] pts);
+
+                foreach (Point3d pt in pts)
+                {
+                    box.VerbResults.Add(new LineCurve(pt, box.Dims.Center));
+                }
             }
 
             return true;
