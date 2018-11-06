@@ -36,7 +36,7 @@ namespace Box.System.Cicero.Stage
                 boxCurves.Add(BoxFromString(boxData, bounds));
             }
 
-            return new SolutionManifest(inputCurves, boxCurves);
+            return new SolutionManifest(inputCurves, boxCurves, bounds);
         }
 
         public static Curve LineFromString(string data, Curve bounds)

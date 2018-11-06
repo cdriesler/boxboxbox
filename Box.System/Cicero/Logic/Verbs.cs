@@ -33,6 +33,22 @@ namespace Box.System.Cicero.Logic
 
         private static bool Regulate(BoxElement box)
         {
+            foreach (Curve crv in box.InputSegments)
+            {
+                var startPt = crv.PointAtStart;
+                var endPt = crv.PointAtEnd;
+
+                var resultCurves = new List<Curve>()
+                {
+                    new LineCurve(startPt, new Point3d(box.Dims.MinCorner.X, box.Dims.MaxCorner.Y, 0)),
+                    new LineCurve(startPt, new Point3d(startPt.X, box.Dims.MinCorner.Y, 0)),
+                    new LineCurve(endPt, new Point3d(box.Dims.MaxCorner.X, box.Dims.MinCorner.Y, 0)),
+                    new LineCurve(endPt, new Point3d(endPt.X, box.Dims.MaxCorner.Y, 0)),
+                };
+
+                box.VerbResults.AddRange(resultCurves);
+            }
+
             return true;
         }
     }

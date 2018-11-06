@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 using Box.Core.Geometry;
 using Box.Core.Geometry.Modify;
 using Box.System.Cicero.Formats.Element;
+using Box.System.Cicero.Logic;
 using Rhino.Geometry;
 
 namespace Box.System.Cicero.Formats.Manifest
 {
     public class SolutionManifest
     {
+        public Curve Bounds;
+
         public List<Curve> InputLines; //Initial input curves
         public List<BoxElement> BoxElements; //BoxElements with solution information.
 
-        public SolutionManifest(List<Curve> lines, List<BoxElement> boxes)
+        public SolutionManifest(List<Curve> lines, List<BoxElement> boxes, Curve bounds)
         {
+            Bounds = bounds;
+
             InputLines = lines;
             BoxElements = boxes;
         }
@@ -43,6 +48,10 @@ namespace Box.System.Cicero.Formats.Manifest
         /// </summary>
         public void RunVerbs()
         {
+            foreach (BoxElement box in BoxElements)
+            {
+                Verbs.Enact(box);
+            }
 
         }
 
