@@ -32,8 +32,8 @@ namespace Box.Core.Aviary
             double H = Bounds.Height;
 
             SvgText.Append("<svg ");
-            SvgText.Append("width =\"" + "71vh" + "\" ");
-            SvgText.Append("height =\"" + "71vh" + "\" ");
+            SvgText.Append("width =\"" + "66vh" + "\" ");
+            SvgText.Append("height =\"" + "66vh" + "\" ");
             SvgText.Append("viewBox=\"" + X + " " + Y + " " + W + " " + H + "\" ");
             //SvgText.Append("shape-rendering=\"" + RenderQuality + "\" ");
             SvgText.Append("xmlns = \"http://www.w3.org/2000/svg\" > " + Environment.NewLine);

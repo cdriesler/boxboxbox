@@ -30,6 +30,9 @@ namespace Box.System.Cicero.Formats.Element
 
             Dims = new BoundaryData(bounds);
 
+            InputSegments = new List<Curve>();
+            VerbResults = new List<Curve>();
+
             ErrorCurves = new List<Curve>();
         }
     }

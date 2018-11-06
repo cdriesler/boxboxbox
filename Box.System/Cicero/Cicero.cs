@@ -40,7 +40,7 @@ namespace Box.System.Cicero
         /// </summary>
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-
+            pManager.AddCurveParameter("Curves", "C", "C", GH_ParamAccess.list);
         }
 
         /// <summary>
@@ -74,6 +74,12 @@ namespace Box.System.Cicero
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\cicero\\svg\\" + id + ".svg";
 
             io.File.WriteAllText(path, dwg.SvgText.ToString());
+
+            var crvs = new List<Curve>();
+
+            res.BoxElements.ForEach(x => x.InputSegments.ForEach(y => crvs.Add(y)));
+
+            DA.SetDataList(0, res.InputLines);
         }
 
         /// <summary>
