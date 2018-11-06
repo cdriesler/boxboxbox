@@ -22,7 +22,7 @@ namespace Box.Core.Test
 
             context.WriteLine("Assembly init started");
 
-            Rhino.Compute.ComputeServer.ApiToken = "cdriesler.dev@gmail.com";
+            Rhino.Compute.ComputeServer.AuthToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwIjoiUEtDUyM3IiwiYyI6IkFFU18yNTZfQ0JDIiwiYjY0aXYiOiJiRkUrYVFRMnRXeVcvMmQwS2kraXdBPT0iLCJiNjRjdCI6InJkaEdCT3Q2Ry9leE5PQVh1anFndENQUTFFN1ZUbWZrOENlenBSaDNLaVFnaVV0ejFpLzhZRWEyWWt5WGFaVU1xU0RLVDhUQjRsQXZUNTNZRXZCTTZGYUhIcW50YUUveERUWDJmTmFPSFh2c3VSeERMTEtlVEgxRnArYk5aMSs0d2VvT2xPZXh4TkFXZkVSd2R3Zm9BdW9hQlp3cjlITG41Zno0aGRCTGY1L1J2UUxBTjVCRnZJQVpsUVc0VG5YU3p6akJtanB4cVVWN2ZWemtrYnNJVEE9PSIsImlhdCI6MTU0MTQ4NzEwOX0.N6ufPFSLuxiTnUsMiFrTd58Qs2KpVG6PmwjL-LksWEw";
         }
 
         [AssemblyCleanup]

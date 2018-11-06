@@ -18,7 +18,7 @@ namespace Box.Core
             CollectionReference queue = db.Collection("queue");
             CollectionReference results = db.Collection("results");
 
-            ComputeServer.ApiToken = "cdriesler.iv@gmail.com";
+            ComputeServer.AuthToken = "cdriesler.iv@gmail.com";
 
             while (true)
             {

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rhino.Geometry;
-using Rhino.Compute;
-using Rhino.Compute.Intersect;
+using Rhino.Geometry.Intersect;
 
 namespace Box.Core.Geometry.Verify
 {
@@ -13,7 +12,7 @@ namespace Box.Core.Geometry.Verify
     {
         public static bool CurvesIntersect(Curve crvA, Curve crvB, bool includeOverlap = false)
         {
-            var ccx = Rhino.Compute.Intersect.IntersectionCompute.CurveCurve(crvA, crvB, 0.1, 0.1);
+            var ccx = Intersection.CurveCurve(crvA, crvB, 0.1, 0.1);
 
             var res = includeOverlap ? ccx.Count : ccx.Count(x => x.IsPoint);
 
@@ -49,7 +48,7 @@ namespace Box.Core.Geometry.Verify
                 return results.Contains(true);
             }
 
-            var ccx = Rhino.Compute.Intersect.IntersectionCompute.CurveCurve(region, crv, 0.1, 0.1).Where(x => x.IsPoint).ToList();
+            var ccx = Intersection.CurveCurve(region, crv, 0.1, 0.1).Where(x => x.IsPoint).ToList();
             Console.WriteLine(ccx.Count.ToString());
 
             if (ccx.Count > 2)
