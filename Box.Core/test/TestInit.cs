@@ -22,7 +22,7 @@ namespace Box.Core.Test
 
             context.WriteLine("Assembly init started");
 
-            Rhino.Compute.ComputeServer.ApiToken = "cdriesler.iv@gmail.com";
+            Rhino.Compute.ComputeServer.ApiToken = "cdriesler.dev@gmail.com";
         }
 
         [AssemblyCleanup]

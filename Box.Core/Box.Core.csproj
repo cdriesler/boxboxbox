@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aviary\SvgDocument.cs" />
     <Compile Include="Formats\Data\BoundaryData.cs" />
     <Compile Include="Formats\Drawing\DrawingLayer.cs" />
     <Compile Include="Formats\Drawing\Drawing.cs" />
@@ -67,9 +68,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Aviary\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Rhino3dmIO.Desktop.6.9.18271.20591\build\net45\Rhino3dmIO.Desktop.targets" Condition="Exists('..\packages\Rhino3dmIO.Desktop.6.9.18271.20591\build\net45\Rhino3dmIO.Desktop.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

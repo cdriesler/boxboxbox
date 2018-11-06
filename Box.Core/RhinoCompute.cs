@@ -9,7 +9,8 @@ namespace Rhino.Compute
 {
     public static class ComputeServer
     {
-        public static string WebAddress { get; set; } = "http://35.231.33.58:99";
+        //public static string WebAddress { get; set; } = "http://35.231.33.58:99";
+        public static string WebAddress { get; set; } = "http://compute.rhino3d.com/";
         public static string ApiToken { get; set; }
 
         public static T Post<T>(string function, params object[] postData)
