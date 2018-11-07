@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rhino;
-using Theano.Rep.Formats;
+using Box.System.Theano.Formats;
 
-namespace Theano.Rep.Logic
+namespace Box.System.Theano.Logic
 {
     public static class Sanitize
     {

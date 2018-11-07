@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Rhino;
 using Rhino.DocObjects;
 using Rhino.Geometry;
-using Theano.Rep.Formats;
+using Box.System.Theano.Formats;
 
-namespace Theano.Rep.Logic
+namespace Box.System.Theano.Logic
 {
     public static class Make
     {

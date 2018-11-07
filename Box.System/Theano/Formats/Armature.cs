@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Rhino;
 using Rhino.Geometry;
 
-namespace Theano.Rep.Formats
+namespace Box.System.Theano.Formats
 {
-    public enum CapType {Bottom, Middle, Top};
+    public enum CapType { Bottom, Middle, Top };
 
     public class Armature
     {

@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading;
 
-namespace Theano.Dispatch
+namespace Box.System.Theano.Apparatus
 {
     class Program
     {

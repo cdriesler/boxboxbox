@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Rhino.Geometry;
 
-namespace Theano.Rep.Logic
+namespace Box.System.Theano.Logic
 {
     public static class Terrain
     {
