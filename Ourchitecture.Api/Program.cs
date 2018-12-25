@@ -13,6 +13,7 @@ namespace Ourchitecture.Api
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseKestrel()
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:88/")
                 .Build();
 
             host.Run();
