@@ -11,10 +11,9 @@ namespace Ourchitecture.Api
     {
         static string systemDir = null;
 
-        [AssemblyInitialize]
-        public void Configure(IApplicationBuilder app)
+        public void InitializeRhino()
         {
-            app.UseOwin(x => x.UseNancy());
+            //app.UseOwin(x => x.UseNancy());
 
             Console.WriteLine("Initializing!");
 
@@ -46,8 +45,7 @@ namespace Ourchitecture.Api
             return Assembly.LoadFrom(path);
         }
 
-        [AssemblyCleanup]
-        public static void AssemblyCleanup()
+        public void CleanupRhino()
         {
             // Shotdown the rhino process at the end of the test run
             ExitInProcess();

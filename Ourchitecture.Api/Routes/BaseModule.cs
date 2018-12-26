@@ -8,6 +8,7 @@ namespace Ourchitecture.Api.Routes
         public BaseModule()
         {
             Get["/"] = _ => "Hello World!";
+            Get["/health"] = _ => "Healthy!";
             Get["/test"] = _ =>
             {
                 var testLineA = new LineCurve(new Point3d(0, -1, 0), new Point3d(0, 1, 0));

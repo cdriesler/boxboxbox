@@ -1,10 +1,61 @@
 ﻿using System;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Rhino.Geometry;
+using Topshelf;
+using System.Diagnostics;
+using Nancy.Hosting.Self;
 
 namespace Ourchitecture.Api
 {
+    public class Program
+    {
+        public static void Main()
+        {
+            HostFactory.Run(x =>
+            {
+                var init = new Startup();
+           
+                //x.UseLinuxIfAvailable();
+                x.Service<NancySelfHost>(s =>
+                {
+                    s.ConstructUsing(name => new NancySelfHost());
+                    s.WhenStarted(tc =>
+                    {
+                        tc.Start();
+                        init.InitializeRhino();
+                    });
+                    s.WhenStopped(tc =>
+                    {
+                        tc.Stop();
+                        init.CleanupRhino();
+                    });
+                });
+
+                x.RunAsLocalSystem();
+                x.SetDescription("Nancy-SelfHost example");
+                x.SetDisplayName("Nancy-SelfHost Service");
+                x.SetServiceName("Nancy-SelfHost");
+            });
+        }
+    }
+
+    public class NancySelfHost
+    {
+        private NancyHost m_nancyHost;
+
+        public void Start()
+        {
+            m_nancyHost = new NancyHost(new Uri("http://localhost:88"));
+            m_nancyHost.Start();
+
+        }
+
+        public void Stop()
+        {
+            m_nancyHost.Stop();
+            Console.WriteLine("Stopped. Good bye!");
+        }
+    }
+
+    /*
     public class Program
     {
         public static void Main(string[] args)
@@ -19,4 +70,5 @@ namespace Ourchitecture.Api
             host.Run();
         }
     }
+    */
 }
